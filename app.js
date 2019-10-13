@@ -2,10 +2,14 @@ var express     = require("express"),
     app         = express(),
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose"),
+    passport    = require("passport"),
+    LocalStrategy = require("passport-local"),
     Campground  = require("./models/campground"),
     Comment     = require("./models/comment"),
+    User        = require("./models/user"),
     seedDB      = require("./seeds");
-    
+
+mongoose.set('useUnifiedTopology', true);
 mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true });
 
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist/js')); // redirect jquery JS
@@ -13,9 +17,10 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); /
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/public"));
 seedDB();
 
+//
 
 app.get("/", function(req, res){
     res.render("landing");
@@ -102,6 +107,6 @@ app.post("/campgrounds/:id/comments", function(req, res) {
     });
 });
 
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(3000, process.env.IP, function(){
     console.log("The YelpCamp Server is listening...");
 });
