@@ -3,7 +3,8 @@ var passportLocalMongoose = require("passport-local-mongoose");
 
 var UserSchemma = new mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    isAdmin: {type: Boolean, default: false}
 });
 
 UserSchemma.plugin(passportLocalMongoose);
