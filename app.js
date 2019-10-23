@@ -20,7 +20,7 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
 mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true });
 
-app.use('/js', express.static(__dirname + '/node_modules/jquery/dist/js')); // redirect jquery JS
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect jquery JS
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use(bodyParser.urlencoded({extended: true}));
