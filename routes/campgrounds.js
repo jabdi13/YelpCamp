@@ -125,8 +125,7 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, function (req, res)
 
 // Update Campground route
 router.put("/:id", upload.single('image'), middleware.checkCampgroundOwnership, function (req, res) {
-    Campground.findById(req.params.id, req.body.campground, async function(err, campground){
-        console.log(campground);
+    Campground.findById(req.params.id, async function(err, campground){
         if(err){
             req.flash("error", err.message);
             res.redirect("back");
